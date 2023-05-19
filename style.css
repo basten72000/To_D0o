@@ -12,6 +12,7 @@ body{
     color: #010001;
     background-color: #1e1e1e;
 }
+
 header{
     height: 100px;
     background-color: #252526;
@@ -22,18 +23,18 @@ footer{
     border-top: solid 3px #6b6d6e;
     margin: 0 auto;
     margin-top: 100px;
-    width: 70%;
+    width: 75%;
 }
 
-.content{
+.body-content{
     flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 ul{
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .toDo li{
@@ -44,6 +45,8 @@ ul{
     background-color: #252526;
     width: 300px;
     height: 450px;
+    display: flex;
+    flex-direction: column;
 }
 
 .toDo li .head{
@@ -55,3 +58,20 @@ ul{
     color: #fff;
 }
 
+.toDo .content{
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+.toDo .content::-webkit-scrollbar{
+    visibility: hidden;
+    width: 0px;
+}
+
+.toDo #check{
+    background-color: #347cb5;
+    width: 100%;
+    height: 50px;
+}

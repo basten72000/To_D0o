@@ -29,10 +29,35 @@ function add_card(title, iner, bgcolor) {
   
     body_content.appendChild(ul);
   }
-  
 
-  
-
-  document.body.onload=function(){
-    add_card("", "", '#347cb5');
+  function get_json(path) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', path, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            resolve(data); // Résoudre la promesse avec les données JSON
+          } else {
+            reject(xhr.statusText); // Rejeter la promesse avec le message d'erreur
+          }
+        }
+      };
+      xhr.send();
+    });
   }
+  
+  document.body.onload = function() {
+    get_json('../dataBase.json').then(function(data) {
+        for (var i = 0; i < data.length; i++) {
+            add_card(data[i]["titre"],data[i]["iner"],data[i]["bgcolor"])
+          }
+      });
+
+
+
+
+
+  }
+  
